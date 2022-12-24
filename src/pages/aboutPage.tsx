@@ -9,12 +9,12 @@ export const AboutPage = () => {
             <header className="flex justify-between">
                 <Header title="Help Page" />
                 <div className="mt-4 mr-4">
-                    <Link to="/user/dev_user">
+                    <Link to="/user/demo_user">
                         <Button
                             style="mr-3 "
-                            title="Dev User"
-                            link="/user/dev_user"
-                            color="bg-red-700"
+                            title="Layout Demo"
+                            link="/user/demo_user"
+                            color="bg-yellow-100"
                         />
                     </Link>
                     <Link to="/">

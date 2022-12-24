@@ -35,12 +35,12 @@ export const App = () => {
                 <header className="flex justify-between">
                     <Header title="Home" />
                     <div className="mt-4 mr-4">
-                        <Link to="/user/dev_user" className="mr-3">
+                        <Link to="/user/demo_user" className="mr-3">
                             <Button
                                 style=""
-                                title="Dev User"
-                                link="/user/dev_user"
-                                color="bg-red-700"
+                                title="Layout Demo"
+                                link="/user/demo_user"
+                                color="bg-yellow-100"
                             />
                         </Link>
                         <Link to="/help" className="mr-3">
