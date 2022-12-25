@@ -1,5 +1,5 @@
+// @ts-nocheck
 import React, { Component, useState, useEffect } from "react"
-
 import Footer from "../components/Footer"
 import FullPlaylist from "../components/FullPlaylist"
 import SongCard from "../components/SongCard"
