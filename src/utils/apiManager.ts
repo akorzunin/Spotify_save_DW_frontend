@@ -235,12 +235,12 @@ export const saveUserPl = async (cookie: SpotifyCookie, songs) => {
             }
         )
         if (checkStatusCode(res)) {
-            const data = await res.json()
+            const resData = await res.json()
             // wait some time before spotify create playlist
             await new Promise((resolve) => setTimeout(resolve, 500))
             // add songs to playlist
             const plRes = await fetch(
-                `https://api.spotify.com/v1/playlists/${data.id}/tracks`,
+                `https://api.spotify.com/v1/playlists/${resData.id}/tracks`,
                 {
                     method: "POST",
                     headers: {
@@ -255,11 +255,44 @@ export const saveUserPl = async (cookie: SpotifyCookie, songs) => {
             )
             if (checkStatusCode(plRes)) {
                 const data = await plRes.json()
-                console.info("Saved", data)
-                return true
+                if (!data.error) {
+                    console.info("Created", data)
+                    const updatedRes = await updatePlaylistDescription(
+                        cookie,
+                        resData
+                    )
+                    return updatedRes
+                }
+                return false
             }
             return false
         }
+    }
+    return false
+}
+
+export const updatePlaylistDescription = async (
+    cookie: SpotifyCookie,
+    plData
+) => {
+    debugger
+    const playtlistDetails = await generatePlData()
+    const res = await fetch(
+        `https://api.spotify.com/v1/playlists/${plData.id}`,
+        {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `${cookie.token_type} ${cookie.access_token}`,
+            },
+            body: JSON.stringify({
+                description: playtlistDetails.description,
+            }),
+        }
+    )
+    if (checkStatusCode(res)) {
+        return res
     }
     return false
 }
