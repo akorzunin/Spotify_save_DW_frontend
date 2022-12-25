@@ -19,13 +19,13 @@ const BaseButton: FC<IBaseButton> = ({
     style = "",
 }) => {
     return (
-        <Link
+        <a
             tabIndex={0}
-            to={link}
+            href={link}
             className={`${BaseButtonClass} ${color} ${style}`}
         >
             {title}
-        </Link>
+        </a>
     )
 }
 
