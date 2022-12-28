@@ -7,7 +7,7 @@ export const BaseButtonClass = `max-h-9 cursor-pointer inline-flex justify-cente
 
 interface IBaseButton {
     title: string;
-    link: string;
+    link: string | undefined;
     color: string;
     style: string;
 }
