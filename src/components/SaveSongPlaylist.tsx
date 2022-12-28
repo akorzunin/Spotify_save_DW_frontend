@@ -10,7 +10,7 @@ const SaveSongPlaylist = ({ songs, setSongs, alertDeleted, style }) => {
         setHiddenValues({ ...hiddenValues, [index]: value })
         alertDeleted(songs[index], index)
     }
-
+    console.log('songs', songs)
     return (
         <div className="">
             <div className={`container overflow-y-scroll ${style} mt-3`}>

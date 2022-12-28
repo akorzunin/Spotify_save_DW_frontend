@@ -1,24 +1,26 @@
 // @ts-nocheck
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FC } from 'react';
+import Button from '../Buttons/BaseButton';
 
-import Button from "../Buttons/BaseButton"
+interface ISettingsButton {
+    title: string;
+    onClick: VoidFunction;
+    className: string;
+}
 
-const SettingsButton = ({title, onClick, className}) => {
+const SettingsButton: FC<ISettingsButton> = ({ title, onClick, className }) => {
     return (
         <div>
             <button onClick={onClick} className={className}>
                 <Button
                     style=""
-                    title={ title }
+                    title={title}
                     link={undefined}
                     color="bg-white text-black"
                 />
             </button>
         </div>
-    )
-}
+    );
+};
 
-SettingsButton.propTypes = {}
-
-export default SettingsButton
+export default SettingsButton;
