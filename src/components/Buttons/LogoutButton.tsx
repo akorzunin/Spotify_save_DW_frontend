@@ -6,8 +6,8 @@ import { deleteCookies } from "../../utils/cookieHandle"
 
 const LogoutButton = ({ ButtonStyle }) => {
     return (
-        <div onClick={deleteCookies}>
-            <Link to="/">
+        // <div >
+            <Link to="/" onClick={deleteCookies}>
                 <Button
                     style={ButtonStyle}
                     title="Logout"
@@ -15,7 +15,7 @@ const LogoutButton = ({ ButtonStyle }) => {
                     color="bg-red-500"
                 />
             </Link>
-        </div>
+        // </div>
     )
 }
 

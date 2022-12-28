@@ -27,9 +27,9 @@ export const Blob: FC<IBlob> = ({styles}) => {
                     gradientUnits="userSpaceOnUse"
                     gradientTransform="translate(246.774 274.175) rotate(90) scale(274.175 246.774)"
                 >
-                    <stop stop-color="#61FF00" />
-                    <stop offset="0.557292" stop-color="#29A3E8" />
-                    <stop offset="1" stop-color="#CF078B" />
+                    <stop stopColor="#61FF00" />
+                    <stop offset="0.557292" stopColor="#29A3E8" />
+                    <stop offset="1" stopColor="#CF078B" />
                 </radialGradient>
             </defs>
         </svg>

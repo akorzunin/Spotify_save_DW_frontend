@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react"
-import PropTypes from "prop-types"
-
-import AccountStatus from "./AccountStatus"
-import SettingsTitle from "./SettingsTitle"
-import SettingsButton from "./SettingsButton"
+import React, { useState, useEffect, FC } from 'react';
+import AccountStatus from './AccountStatus';
+import SettingsTitle from './SettingsTitle';
 import {
     getUserData,
     createUser,
@@ -12,99 +9,102 @@ import {
     updateUserData,
     parseFormData,
     parseFormOutputDate,
-} from "../../utils/dbManager"
-import { formDataMap } from "../../interfaces/FormDataMap"
-import { BaseButtonClass } from "../Buttons/BaseButton"
+} from '../../utils/dbManager';
+import { formDataMap } from '../../interfaces/FormDataMap';
+import { BaseButtonClass } from '../Buttons/BaseButton';
+import Button from '../Buttons/BaseButton';
 
 export const TextFormStyle =
-    "w-full mb-3 appearance-none block bg-gray-200 text-gray-700 border border-green-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+    'w-full mb-3 appearance-none block bg-gray-200 text-gray-700 border border-green-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white';
 export const CheckboxFormStyle =
-    "w-4 h-4 bg-gray-100 rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:bg-blue-600"
+    'w-4 h-4 bg-gray-100 rounded border-transparent focus:border-transparent focus:ring-0 cursor-pointer';
 export const HintFormStyle =
-    "text-sm font-light text-gray-900 bg-gray-500 absolute max-w-[192px] rounded-md transition-all duration-600 ease-in-out"
+    'text-sm font-light text-white bg-gray-500 absolute max-w-[192px] rounded-md transition-all duration-600 ease-in-out text-shadow-md';
 
-const SettingsPanel = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
-    const [AutosaveHint, setAutosaveHint] = useState(false)
-    const [FilterDislikesHint, setFilterDislikesHint] = useState(false)
-    const [SaveFullPlHint, setSaveFullPlHint] = useState(false)
-    const [SendmailHint, setSendmailHint] = useState(false)
-    const [SubmitMessage, setSubmitMessage] = useState("")
+const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
+    const [AutosaveHint, setAutosaveHint] = useState(false);
+    const [FilterDislikesHint, setFilterDislikesHint] = useState(false);
+    const [SaveFullPlHint, setSaveFullPlHint] = useState(false);
+    const [SendmailHint, setSendmailHint] = useState(false);
+    const [SubmitMessage, setSubmitMessage] = useState('');
     const showHint = (event) => {
         if (event) {
-            if (event.target.id == "autosave") {
-                setAutosaveHint(true)
+            if (event.target.id == 'autosave') {
+                setAutosaveHint(true);
             }
-            if (event.target.id == "email-checkbox-label") {
-                setSendmailHint(true)
+            if (event.target.id == 'email-checkbox-label') {
+                setSendmailHint(true);
             }
-            if (event.target.id == "filter-dislikes") {
-                setFilterDislikesHint(true)
+            if (event.target.id == 'filter-dislikes') {
+                setFilterDislikesHint(true);
             }
-            if (event.target.id == "save-full-playlist") {
-                setSaveFullPlHint(true)
+            if (event.target.id == 'save-full-playlist') {
+                setSaveFullPlHint(true);
             }
         }
-    }
+    };
     const hideHint = (event) => {
         if (event) {
-            if (event.target.id == "autosave") {
-                setAutosaveHint(false)
+            if (event.target.id == 'autosave') {
+                setAutosaveHint(false);
             }
-            if (event.target.id == "email-checkbox-label") {
-                setSendmailHint(false)
+            if (event.target.id == 'email-checkbox-label') {
+                setSendmailHint(false);
             }
-            if (event.target.id == "filter-dislikes") {
-                setFilterDislikesHint(false)
+            if (event.target.id == 'filter-dislikes') {
+                setFilterDislikesHint(false);
             }
-            if (event.target.id == "save-full-playlist") {
-                setSaveFullPlHint(false)
+            if (event.target.id == 'save-full-playlist') {
+                setSaveFullPlHint(false);
             }
         }
-    }
+    };
     const handleSubmit = (event) => {
-        let formData = {}
+        let formData = {};
         Array.from(event.currentTarget.elements).map((item: any) => {
-            if (!item.id) return null
-            if (item.type === "checkbox") {
-                return (formData[item.id] = item.checked)
+            if (!item.id) return null;
+            if (item.type === 'checkbox') {
+                return (formData[item.id] = item.checked);
             }
-            if (item.type === "datetime-local") {
+            if (item.type === 'datetime-local') {
                 if (item.value) {
-                    return (formData[item.id] = parseFormOutputDate(item.value))
+                    return (formData[item.id] = parseFormOutputDate(
+                        item.value
+                    ));
                 }
             }
             if (item.value) {
-                return (formData[item.id] = item.value)
+                return (formData[item.id] = item.value);
             }
-            formData[item.id] = ""
-        })
-        console.table(formData)
-        const updateData = parseFormData(formData, formDataMap)
-        updateUserData(userId, updateData)
-    }
+            formData[item.id] = '';
+        });
+        console.table(formData);
+        const updateData = parseFormData(formData, formDataMap);
+        updateUserData(userId, updateData);
+    };
 
     const setFormData = (data) => {
         Array.from(document.forms[0]).map((item: any) => {
             // console.log(item.type)
-            if (item.type === "checkbox") {
-                return (item.checked = getDbData(item, data, formDataMap))
+            if (item.type === 'checkbox') {
+                return (item.checked = getDbData(item, data, formDataMap));
             }
-            if (item.type === "datetime-local") {
-                return (item.value = parseDateFromDb(data, item, formDataMap))
+            if (item.type === 'datetime-local') {
+                return (item.value = parseDateFromDb(data, item, formDataMap));
             }
-            if (item.type === "submit") {
-                return
+            if (item.type === 'submit') {
+                return;
             }
-            return (item.value = getDbData(item, data, formDataMap))
-        })
-    }
+            return (item.value = getDbData(item, data, formDataMap));
+        });
+    };
     // automatically pick up dw palylist id for user
     useEffect(() => {
         if (DwPlaylistId) {
             // @ts-ignore cause this form always exist
-            document.forms[0][3].value = DwPlaylistId
+            document.forms[0][3].value = DwPlaylistId;
         }
-    }, [DwPlaylistId])
+    }, [DwPlaylistId]);
 
     useEffect(() => {
         getUserData(userId).then((data) => {
@@ -114,14 +114,18 @@ const SettingsPanel = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                     user_id: userId,
                     is_premium: IsPremium,
                     refresh_token: cookie.refresh_token,
-                }
-                createUser(userId, userData)
+                };
+                createUser(userId, userData);
             }
-            console.table(data)
+            console.table(data);
             // set user settings
-            setFormData(data)
-        })
-    }, [])
+            setFormData(data);
+        });
+    }, []);
+    const [emailFormActive, setEmailFormActive] = useState(false);
+    const handleShowEmailField = (e) => {
+        setEmailFormActive(e.target.checked);
+    };
 
     return (
         <div className="w-[448px] mb-3">
@@ -135,40 +139,39 @@ const SettingsPanel = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                             type="checkbox"
                             value=""
                             className={`${CheckboxFormStyle}`}
+                            onChange={handleShowEmailField}
                         ></input>
                         <label
                             id="email-checkbox-label"
                             htmlFor="email-checkbox"
-                            className="whitespace-nowrap mx-2 font-medium text-gray-900 "
+                            className="whitespace-nowrap mx-2 font-medium text-gray-900 cursor-pointer"
                             onMouseEnter={showHint}
                             onMouseLeave={hideHint}
                         >
                             Send weekly email
                         </label>
-                        <div
-                            className={`${HintFormStyle} right-[30px] ${
-                                SendmailHint
-                                    ? "opacity-100"
-                                    : "opacity-0 invisible"
-                            }`}
-                        >
-                            <div className="p-3">
+                        {SendmailHint && (
+                            <p className={`${HintFormStyle} right-[30px] p-3`}>
                                 Send email everery week at Sunday to not
                                 forget/inform about DW playlist save
-                            </div>
-                        </div>
+                            </p>
+                        )}
                     </div>
-                    <input
-                        id="email-input"
-                        className={`${TextFormStyle}`}
-                        type="email"
-                        placeholder="Email"
-                    ></input>
-                    <input
-                        className={`${TextFormStyle}`}
-                        id="email-date-input"
-                        type="datetime-local"
-                    ></input>
+                    {emailFormActive && (
+                        <div>
+                            <input
+                                id="email-input"
+                                className={`${TextFormStyle}`}
+                                type="email"
+                                placeholder="Email"
+                            />
+                            <input
+                                className={`${TextFormStyle}`}
+                                id="email-date-input"
+                                type="datetime-local"
+                            />
+                        </div>
+                    )}
                     <div className="flex-none">
                         <label
                             id="dw-link-label"
@@ -231,28 +234,17 @@ const SettingsPanel = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                         >
                             Save full playlist
                         </label>
-                        <div
-                            className={`${HintFormStyle} right-[100px]
-                                ${
-                                    AutosaveHint
-                                        ? "opacity-100"
-                                        : "opacity-0 invisible"
-                                }`}
-                        >
-                            <div className="p-3">
+                        {AutosaveHint && (
+                            <p className={`${HintFormStyle} right-[100px] p-3`}>
                                 Save palylist automatically at choosen time UTC.
                                 Service need to play one of playlist songs to
                                 get playlist context
-                            </div>
-                        </div>
-                        <div
-                            className={`${HintFormStyle} right-[-10px] ${
-                                FilterDislikesHint
-                                    ? "opacity-100"
-                                    : "opacity-0 invisible"
-                            }`}
-                        >
-                            <div className="p-3">
+                            </p>
+                        )}
+                        {FilterDislikesHint && (
+                            <div
+                                className={`${HintFormStyle} right-[-10px] p-3`}
+                            >
                                 <p>
                                     Checked: Play all songs from playlist to
                                     filter only playable ones
@@ -262,15 +254,11 @@ const SettingsPanel = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                                     don't use player
                                 </p>
                             </div>
-                        </div>
-                        <div
-                            className={`${HintFormStyle} right-[200px] ${
-                                SaveFullPlHint
-                                    ? "opacity-100"
-                                    : "opacity-0 invisible"
-                            }`}
-                        >
-                            <div className="p-3">
+                        )}
+                        {SaveFullPlHint && (
+                            <div
+                                className={`${HintFormStyle} right-[200px] p-3`}
+                            >
                                 <p>
                                     Checked: Save playlist even none of 30 songs
                                     were disliked
@@ -280,7 +268,7 @@ const SettingsPanel = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                                     listened thus don't save it'
                                 </p>
                             </div>
-                        </div>
+                        )}
                     </div>
                     <input
                         className={`${TextFormStyle}`}
@@ -296,21 +284,23 @@ const SettingsPanel = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                         />
                     </div>
                 </form>
-                <SettingsButton
-                    title="Collect current DW"
-                    onClick={console.log}
-                    className="mb-3"
-                />
-                <SettingsButton
-                    title="Play DW playlist"
-                    onClick={undefined}
-                    className={undefined}
-                />
+                <div className="flex flex-col gap-y-3">
+                    <Button
+                        style=""
+                        title="Collect current DW"
+                        link={undefined}
+                        color="bg-white text-black w-40"
+                    />
+                    <Button
+                        style=""
+                        title="Play DW playlist"
+                        link={undefined}
+                        color="bg-white text-black w-36"
+                    />
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-SettingsPanel.propTypes = {}
-
-export default SettingsPanel
+export default SettingsPanel;
