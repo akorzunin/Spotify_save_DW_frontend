@@ -122,6 +122,10 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
             setFormData(data);
         });
     }, []);
+    const [emailFormActive, setEmailFormActive] = useState(false);
+    const handleShowEmailField = (e) => {
+        setEmailFormActive(e.target.checked);
+    };
 
     return (
         <div className="w-[448px] mb-3">
@@ -135,6 +139,7 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                             type="checkbox"
                             value=""
                             className={`${CheckboxFormStyle}`}
+                            onChange={handleShowEmailField}
                         ></input>
                         <label
                             id="email-checkbox-label"
@@ -152,17 +157,21 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                             </p>
                         )}
                     </div>
-                    <input
-                        id="email-input"
-                        className={`${TextFormStyle}`}
-                        type="email"
-                        placeholder="Email"
-                    ></input>
-                    <input
-                        className={`${TextFormStyle}`}
-                        id="email-date-input"
-                        type="datetime-local"
-                    ></input>
+                    {emailFormActive && (
+                        <div>
+                            <input
+                                id="email-input"
+                                className={`${TextFormStyle}`}
+                                type="email"
+                                placeholder="Email"
+                            />
+                            <input
+                                className={`${TextFormStyle}`}
+                                id="email-date-input"
+                                type="datetime-local"
+                            />
+                        </div>
+                    )}
                     <div className="flex-none">
                         <label
                             id="dw-link-label"
