@@ -1,20 +1,15 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, { FC } from 'react';
 
-const Header = ({ title }) => {
+interface IHeader {
+    title: string;
+}
+
+const Header: FC<IHeader> = ({ title = 'Header' }) => {
     return (
         <div>
             <h1 className="text-6xl font-bold">{title}</h1>
         </div>
-    )
-}
+    );
+};
 
-Header.defaultProps = {
-    title: "Header",
-}
-
-Header.propTypes = {
-    title: PropTypes.string,
-}
-
-export default Header
+export default Header;

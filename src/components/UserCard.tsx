@@ -14,15 +14,15 @@ const UserCard = ({ userName, imgUrl, followers }) => {
             </div>
             <div>
                 <div className="p-0.5 flex ">
-                    <div className="font-semibold text-white text-lg mr-6 leading-6">
+                    <div className="font-semibold text-white text-lg mr-6 leading-6 text-shadow-md">
                         {userName}
                     </div>
-                    <div className="text-white text-base mt-[2px] leading-6 opacity-80 hidden xl:block">
+                    <div className="text-white text-base mt-[2px] leading-6 opacity-80 hidden xl:block text-shadow-md">
                         {followers > 999 ? followers / 1000 + "k" : followers}{" "}
                         followers
                     </div>
                 </div>
-                <WeekCounter className="text-white text-sm xl:text-lg p-0.5" />
+                <WeekCounter />
             </div>
         </div>
     )
