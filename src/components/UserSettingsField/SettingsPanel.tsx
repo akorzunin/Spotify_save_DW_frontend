@@ -21,7 +21,19 @@ export const CheckboxFormStyle =
 export const HintFormStyle =
     'text-sm font-light text-white bg-gray-500 absolute max-w-[192px] rounded-md transition-all duration-600 ease-in-out text-shadow-md';
 
-const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
+interface ISettingsPanel {
+    IsPremium: boolean;
+    userId: string;
+    cookie: { refresh_token: VoidFunction };
+    DwPlaylistId: string;
+}
+
+const SettingsPanel: FC<ISettingsPanel> = ({
+    IsPremium,
+    userId,
+    cookie,
+    DwPlaylistId,
+}) => {
     const [AutosaveHint, setAutosaveHint] = useState(false);
     const [FilterDislikesHint, setFilterDislikesHint] = useState(false);
     const [SaveFullPlHint, setSaveFullPlHint] = useState(false);
@@ -274,14 +286,10 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                         className={`${TextFormStyle}`}
                         id="autosave-date-input"
                         type="datetime-local"
-                    ></input>
+                    />
                     <div className="flex justify-between">
                         <div>{SubmitMessage}</div>
-                        <input
-                            className={`${BaseButtonClass} bg-white h-10 focus:bg-blue-600`}
-                            type="submit"
-                            value="Submit"
-                        />
+                        <Button style="" title="Submit" color="bg-white h-10" />
                     </div>
                 </form>
                 <div className="flex flex-col gap-y-3">

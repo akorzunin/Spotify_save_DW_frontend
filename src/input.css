@@ -106,6 +106,22 @@
 .firefox-scrollBar {
     scrollbar-width: 16px;
     scrollbar-color: red  blue;
-    /* scrollbar-gutter: stable; */
-    /* scrollbar-arrow-color: yellow; */
 }
+
+
+
+.btn {
+    transition: all .2s linear;
+    /* position: absolute; */
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+

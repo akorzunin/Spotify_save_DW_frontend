@@ -31,7 +31,6 @@ const SaveSongPlaylist = ({ songs, setSongs, alertDeleted, style }) => {
                             song={emptySong}
                             index={0}
                             isDeletable={false}
-                            onDelete={undefined}
                             isHidden={undefined}
                         />
                     </div>

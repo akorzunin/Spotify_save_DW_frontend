@@ -1,23 +1,36 @@
-import React from "react"
+import React, { FC } from 'react';
+import { Song } from '../interfaces/Song';
 
+interface ISongCard {
+    song: Song;
+    index: string;
+    isDeletable: boolean;
+    onDelete?: ((index: string, value: boolean) => void) | undefined;
+    isHidden: boolean;
+}
 
-
-const SongCard = ({ song, index, isDeletable, onDelete, isHidden }) => {
+const SongCard: FC<ISongCard> = ({
+    song,
+    index,
+    isDeletable,
+    onDelete,
+    isHidden,
+}) => {
     const handleChange = () => {
         if (isDeletable) {
-            console.log("Deletable")
-            onDelete(index, true)
+            console.log('Deletable');
+            onDelete(index, true);
         }
-    }
+    };
     return (
         <div
             className={`flex border-solid border-2 m-3 rounded-md ${
-                isHidden && "hidden"
+                isHidden && 'hidden'
             }`}
         >
             <div
                 className={`text-black p-2 mb-auto mt-auto inline ${
-                    index < 10 && "ml-2"
+                    Number(index) < 10 && 'ml-2'
                 }`}
             >
                 {index}
@@ -39,7 +52,7 @@ const SongCard = ({ song, index, isDeletable, onDelete, isHidden }) => {
                 </div>
             </div>
             <button
-                className={`text-white mr-5 my-auto ${!isDeletable && "hidden"}
+                className={`text-white mr-5 my-auto ${!isDeletable && 'hidden'}
             border-solid border-2 m-3 rounded-md px-5 
             hover:bg-red-400 hover:pointer hover:border-transparent cursor-pointer
             transition
@@ -49,13 +62,7 @@ const SongCard = ({ song, index, isDeletable, onDelete, isHidden }) => {
                 X
             </button>
         </div>
-    )
-}
+    );
+};
 
-SongCard.defaultProps = {
-    onDelete: () => {},
-    isHidden: false,
-    isDeletable: false,
-}
-
-export default SongCard
+export default SongCard;

@@ -21,7 +21,6 @@ const Playlist: FC<IPlayList> = ({ title, songs, isDW, style }) => {
                             song={song}
                             index={index.toString()}
                             isDeletable={false}
-                            onDelete={undefined}
                             isHidden={undefined}
                         />
                     ))
@@ -31,7 +30,6 @@ const Playlist: FC<IPlayList> = ({ title, songs, isDW, style }) => {
                             song={emptySong}
                             index={0}
                             isDeletable={false}
-                            onDelete={undefined}
                             isHidden={undefined}
                         />
                     </div>
