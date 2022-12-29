@@ -198,7 +198,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             defaultValue=""
                             placeholder="Discover Weekly playlist id"
                             className={`${TextFormStyle}`}
-                        ></input>
+                        />
                     </div>
                     <div className="flex items-center relative mb-4">
                         <input
@@ -206,7 +206,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             type="checkbox"
                             value=""
                             className={`${CheckboxFormStyle}`}
-                        ></input>
+                        />
                         <label
                             id="autosave"
                             htmlFor="autosave-checkbox"
@@ -221,7 +221,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             type="checkbox"
                             value=""
                             className={`${CheckboxFormStyle}`}
-                        ></input>
+                        />
                         <label
                             id="filter-dislikes"
                             htmlFor="filter-dislikes-checkbox"
@@ -236,7 +236,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             type="checkbox"
                             value=""
                             className={`${CheckboxFormStyle}`}
-                        ></input>
+                        />
                         <label
                             id="save-full-playlist"
                             htmlFor="save-full-playlist-checkbox"

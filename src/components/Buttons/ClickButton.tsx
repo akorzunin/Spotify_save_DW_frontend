@@ -13,10 +13,13 @@ const ClickButton: FC<IClickButton> = ({
     color = 'bg-blue-700',
 }) => {
     return (
-        <button tabIndex={0} role="link" onClick={onClick}>
-            <div className={`${BaseButtonClass} ${color} text-white`}>
-                {title}
-            </div>
+        <button
+            tabIndex={0}
+            role="link"
+            onClick={onClick}
+            className={`${BaseButtonClass} ${color} text-white btn`}
+        >
+            {title}
         </button>
     );
 };
