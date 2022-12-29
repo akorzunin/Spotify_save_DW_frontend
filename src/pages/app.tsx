@@ -1,34 +1,34 @@
-import React, { Component } from "react"
-import Cookies from "universal-cookie"
-import { Link } from "react-router-dom"
+import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
+import { Link } from 'react-router-dom';
 
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-import Button from "../components/Buttons/BaseButton"
-import BlobButton from "../components/Buttons/BlobButton"
-import * as cookieHandle from "../utils/cookieHandle"
-import LoginButton from "../components/Buttons/LoginButton"
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Button from '../components/Buttons/BaseButton';
+import BlobButton from '../components/Buttons/BlobButton';
+import * as cookieHandle from '../utils/cookieHandle';
+import BaseButton from '../components/Buttons/BaseButton';
 
 export const App = () => {
     // handle cookies
-    const [userPath, setUserPath] = React.useState("/login")
+    const [userPath, setUserPath] = React.useState('/login');
     React.useEffect(() => {
         if (cookieHandle.isValidCookies(cookies)) {
             cookieHandle
                 .getUserPath(cookies)
                 .then((res) => {
-                    setUserPath(res)
+                    setUserPath(res);
                 })
                 .catch((err: string) => {
-                    console.warn("Cant get user info " + err)
-                    setUserPath("/login")
-                })
+                    console.warn('Cant get user info ' + err);
+                    setUserPath('/login');
+                });
         } else {
-            setUserPath("/login")
+            setUserPath('/login');
         }
-    }, [])
-    const cookiesLib = new Cookies()
-    const cookies = cookiesLib.getAll()
+    }, []);
+    const cookiesLib = new Cookies();
+    const cookies = cookiesLib.getAll();
     return (
         <>
             <div className="min-h-screen">
@@ -51,16 +51,20 @@ export const App = () => {
                                 color="bg-white"
                             />
                         </Link>
-                        <LoginButton />
+                        <BaseButton
+                            title="Login"
+                            link="/login"
+                            color="bg-white"
+                        />
                     </div>
                 </header>
                 <main className="">
                     <BlobButton title="Save DW" link={userPath} />
                 </main>
             </div>
-            <Footer style={"fixed bottom-0"} />
+            <Footer style={'fixed bottom-0'} />
         </>
-    )
-}
+    );
+};
 
-export default App
+export default App;

@@ -9,7 +9,7 @@ interface IBaseButton {
     title: string;
     link?: string | undefined;
     color: string;
-    style: string;
+    style?: string;
 }
 
 const BaseButton: FC<IBaseButton> = ({
@@ -17,6 +17,7 @@ const BaseButton: FC<IBaseButton> = ({
     link = '/',
     color = 'bg-blue-700',
     style = '',
+    onClick
 }) => {
     return (
         <a
