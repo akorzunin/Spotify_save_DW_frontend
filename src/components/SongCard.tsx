@@ -1,5 +1,7 @@
 import React from "react"
-import PropTypes from "prop-types"
+
+
+
 const SongCard = ({ song, index, isDeletable, onDelete, isHidden }) => {
     const handleChange = () => {
         if (isDeletable) {
@@ -36,7 +38,7 @@ const SongCard = ({ song, index, isDeletable, onDelete, isHidden }) => {
                     {song.artists}
                 </div>
             </div>
-            <div
+            <button
                 className={`text-white mr-5 my-auto ${!isDeletable && "hidden"}
             border-solid border-2 m-3 rounded-md px-5 
             hover:bg-red-400 hover:pointer hover:border-transparent cursor-pointer
@@ -45,7 +47,7 @@ const SongCard = ({ song, index, isDeletable, onDelete, isHidden }) => {
                 onClick={handleChange}
             >
                 X
-            </div>
+            </button>
         </div>
     )
 }
@@ -55,13 +57,5 @@ SongCard.defaultProps = {
     isHidden: false,
     isDeletable: false,
 }
-
-// SongCard.propTypes = {
-//     song: PropTypes.string,
-//     index: PropTypes.string,
-//     onDelete: PropTypes.func,
-//     isHidden: PropTypes.boolean,
-//     isDeletable: PropTypes.boolean,
-// }
 
 export default SongCard

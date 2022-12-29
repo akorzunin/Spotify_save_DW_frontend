@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import SongCard from './SongCard';
 import { emptySong, Song } from '../interfaces/Song';
 import PlaylistTitle from './PlaylistTitle';
-
 interface IPlayList {
     title: string;
     songs: string;
@@ -12,9 +11,9 @@ interface IPlayList {
 
 const Playlist: FC<IPlayList> = ({ title, songs, isDW, style }) => {
     return (
-        <div className="max-w-md mb-3 flex flex-col gap-y-12">
+        <div className={"max-w-md mb-3 flex flex-col gap-y-12"}>
             <PlaylistTitle title={'Playlist: ' + title} isDW={isDW} />
-            <div className={`container overflow-y-scroll ${style} mt-3`}>
+            <div className={`firefox-scrollBar container overflow-y-scroll ${style} mt-3`}>
                 {Array.isArray(songs) && songs.length ? (
                     songs.map((song: Song, index: number) => (
                         <SongCard

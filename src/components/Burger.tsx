@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
+import React, { FC } from 'react';
 
-const Burger = ({ burgerClass, handleBM }) => {
+interface IBurger {
+    burgerClass: string;
+    handleBM: VoidFunction;
+}
+
+const Burger: FC<IBurger> = ({ burgerClass, handleBM }) => {
     return (
         <div className="">
             <div
@@ -11,9 +15,7 @@ const Burger = ({ burgerClass, handleBM }) => {
                 <span></span>
             </div>
         </div>
-    )
-}
+    );
+};
 
-Burger.propTypes = {}
-
-export default Burger
+export default Burger;

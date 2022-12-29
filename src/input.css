@@ -102,3 +102,10 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #a0aec0;
 }
+
+.firefox-scrollBar {
+    scrollbar-width: 16px;
+    scrollbar-color: red  blue;
+    /* scrollbar-gutter: stable; */
+    /* scrollbar-arrow-color: yellow; */
+}
