@@ -11,13 +11,12 @@ import {
     parseFormOutputDate,
 } from '../../utils/dbManager';
 import { formDataMap } from '../../interfaces/FormDataMap';
-import { BaseButtonClass } from '../Buttons/BaseButton';
 import Button from '../Buttons/BaseButton';
 
 export const TextFormStyle =
     'w-full mb-3 appearance-none block bg-gray-200 text-gray-700 border border-green-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white';
 export const CheckboxFormStyle =
-    'w-4 h-4 bg-gray-100 rounded border-transparent focus:border-transparent focus:ring-0 cursor-pointer';
+    'w-4 h-4 bg-gray-100 rounded border-transparent cursor-pointer';
 export const HintFormStyle =
     'text-sm font-light text-white bg-gray-500 absolute max-w-[192px] rounded-md transition-all duration-600 ease-in-out text-shadow-md';
 
@@ -150,7 +149,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             id="email-checkbox"
                             type="checkbox"
                             value=""
-                            className={`${CheckboxFormStyle}`}
+                            className='check'
                             onChange={handleShowEmailField}
                         ></input>
                         <label
@@ -205,12 +204,12 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             id="autosave-checkbox"
                             type="checkbox"
                             value=""
-                            className={`${CheckboxFormStyle}`}
+                            className='check'
                         />
                         <label
                             id="autosave"
                             htmlFor="autosave-checkbox"
-                            className="whitespace-nowrap mx-2 font-medium text-gray-900"
+                            className="whitespace-nowrap mx-2 font-medium text-gray-900 cursor-pointer"
                             onMouseEnter={showHint}
                             onMouseLeave={hideHint}
                         >
@@ -220,12 +219,12 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             id="filter-dislikes-checkbox"
                             type="checkbox"
                             value=""
-                            className={`${CheckboxFormStyle}`}
+                            className='check'
                         />
                         <label
                             id="filter-dislikes"
                             htmlFor="filter-dislikes-checkbox"
-                            className="whitespace-nowrap mx-2 font-medium text-gray-900"
+                            className="whitespace-nowrap mx-2 font-medium text-gray-900 cursor-pointer"
                             onMouseEnter={showHint}
                             onMouseLeave={hideHint}
                         >
@@ -235,12 +234,12 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             id="save-full-playlist-checkbox"
                             type="checkbox"
                             value=""
-                            className={`${CheckboxFormStyle}`}
+                            className='check'
                         />
                         <label
                             id="save-full-playlist"
                             htmlFor="save-full-playlist-checkbox"
-                            className="whitespace-nowrap mx-2 font-medium text-gray-900"
+                            className="whitespace-nowrap mx-2 font-medium text-gray-900 cursor-pointer"
                             onMouseEnter={showHint}
                             onMouseLeave={hideHint}
                         >
