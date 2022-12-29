@@ -123,6 +123,7 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* styles for checkbox */
 .check {
     position: absolute;
     z-index: -1;
@@ -156,7 +157,6 @@
   }
 
   .check:checked + label::before {
-    /* transition: none; */
     border: none;
   }
 

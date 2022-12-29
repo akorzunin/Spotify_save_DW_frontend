@@ -38,6 +38,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({
     const [SaveFullPlHint, setSaveFullPlHint] = useState(false);
     const [SendmailHint, setSendmailHint] = useState(false);
     const [SubmitMessage, setSubmitMessage] = useState('');
+    const [autosaveChecked, setAutosaveChecked] = useState(false);
     const showHint = (event) => {
         if (event) {
             if (event.target.id == 'autosave') {
@@ -97,9 +98,10 @@ const SettingsPanel: FC<ISettingsPanel> = ({
     const setFormData = (data) => {
         Array.from(document.forms[0]).map((item: any) => {
             // console.log(item.type)
-            if (item.type === 'checkbox') {
-                return (item.checked = getDbData(item, data, formDataMap));
-            }
+            // for what??
+            // if (item.type === 'checkbox') {
+            //     return (item.checked = getDbData(item, data, formDataMap));
+            // }
             if (item.type === 'datetime-local') {
                 return (item.value = parseDateFromDb(data, item, formDataMap));
             }
@@ -149,9 +151,9 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             id="email-checkbox"
                             type="checkbox"
                             value=""
-                            className='check'
+                            className="check"
                             onChange={handleShowEmailField}
-                        ></input>
+                        />
                         <label
                             id="email-checkbox-label"
                             htmlFor="email-checkbox"
@@ -204,7 +206,8 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             id="autosave-checkbox"
                             type="checkbox"
                             value=""
-                            className='check'
+                            className="check"
+                            onClick={() => {setAutosaveChecked(!autosaveChecked)}}
                         />
                         <label
                             id="autosave"
@@ -215,11 +218,12 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                         >
                             Autosave
                         </label>
+                        {autosaveChecked && (<>
                         <input
                             id="filter-dislikes-checkbox"
                             type="checkbox"
                             value=""
-                            className='check'
+                            className="check"
                         />
                         <label
                             id="filter-dislikes"
@@ -234,7 +238,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             id="save-full-playlist-checkbox"
                             type="checkbox"
                             value=""
-                            className='check'
+                            className="check"
                         />
                         <label
                             id="save-full-playlist"
@@ -245,6 +249,8 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                         >
                             Save full playlist
                         </label>
+                        </>
+                        )}
                         {AutosaveHint && (
                             <p className={`${HintFormStyle} right-[100px] p-3`}>
                                 Save palylist automatically at choosen time UTC.
@@ -281,11 +287,11 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                             </div>
                         )}
                     </div>
-                    <input
+                    {autosaveChecked && <input
                         className={`${TextFormStyle}`}
                         id="autosave-date-input"
                         type="datetime-local"
-                    />
+                    />}
                     <div className="flex justify-between">
                         <div>{SubmitMessage}</div>
                         <Button style="" title="Submit" color="bg-white h-10" />
