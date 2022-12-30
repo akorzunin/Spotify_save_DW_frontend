@@ -1,7 +1,6 @@
 // @ts-nocheck
-import React, { Component, useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Footer from "../components/Footer"
-import FullPlaylist from "../components/FullPlaylist"
 import SongCard from "../components/SongCard"
 import * as cookieHandle from "../utils/cookieHandle"
 import * as apiManager from "../utils/apiManager"
@@ -14,6 +13,7 @@ import Button from "../components/Buttons/BaseButton"
 import LogoutButton from "../components/Buttons/LogoutButton"
 import { emptySong } from "../interfaces/Song"
 import UserCard from "../components/UserCard"
+import Playlist from "../components/Playlist"
 
 export const UserApp = () => {
     // vars
@@ -179,9 +179,9 @@ export const UserApp = () => {
                 <main className="">
                     <div className="xl:flex 2xl:justify-center">
                         <div className="lg:flex justify-center">
-                            <FullPlaylist
-                                PlaylistName={PlaylistName}
-                                PlSongs={PlSongs}
+                            <Playlist
+                                title={PlaylistName}
+                                songs={PlSongs}
                                 isDW={isDW}
                                 style={"max-h-[70vh] max-w-md"}
                             />
