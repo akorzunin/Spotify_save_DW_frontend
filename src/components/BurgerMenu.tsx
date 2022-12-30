@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Button from './Buttons/BaseButton';
-import LogoutButton from './Buttons/LogoutButton';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import Button from "./Buttons/BaseButton"
+import LogoutButton from "./Buttons/LogoutButton"
+import { Link } from "react-router-dom"
 
 const BurgerMenu = ({ burgerClass, ButtonStyle }) => {
-    const [burgerOpen, setburgerOpen] = useState('');
+    const [burgerOpen, setburgerOpen] = useState("")
     useEffect(() => {
-        setburgerOpen(burgerClass ? 'popup_open' : '');
-    }, [burgerClass]);
+        setburgerOpen(burgerClass ? "popup_open" : "")
+    }, [burgerClass])
 
     return (
         <div
@@ -24,12 +24,12 @@ const BurgerMenu = ({ burgerClass, ButtonStyle }) => {
                     />
                 </Link>
                 <Button style="" title="Home" link="/" color="text-black" />
-                <LogoutButton />
+                <LogoutButton ButtonStyle="" />
             </div>
         </div>
-    );
-};
+    )
+}
 
-BurgerMenu.propTypes = {};
+BurgerMenu.propTypes = {}
 
-export default BurgerMenu;
+export default BurgerMenu

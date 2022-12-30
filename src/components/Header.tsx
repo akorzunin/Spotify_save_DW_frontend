@@ -4,7 +4,7 @@ interface IHeader {
     title: string;
 }
 
-const Header: FC<IHeader> = ({ title }) => {
+const Header: FC<IHeader> = ({ title = 'Header' }) => {
     return (
         <div>
             <h1 className="text-6xl font-bold">{title}</h1>

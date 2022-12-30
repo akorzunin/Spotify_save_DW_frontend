@@ -1,24 +1,16 @@
-import React, { FC, useState } from 'react';
-import SongCard from './SongCard';
-import { emptySong, Song } from '../interfaces/Song';
+import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
+import SongCard from "./SongCard"
 
-interface ISaveSongPlayList {
-    songs: Song[];
-    alertDeleted: (song: Song) => {};
-    style: string;
-}
+import { emptySong, Song } from "../interfaces/Song"
 
-const SaveSongPlaylist: FC<ISaveSongPlayList> = ({
-    songs,
-    alertDeleted,
-    style,
-}) => {
-    const [hiddenValues, setHiddenValues] = useState({});
+const SaveSongPlaylist = ({ songs, setSongs, alertDeleted, style }) => {
+    const [hiddenValues, setHiddenValues] = useState({})
     const handleDelete = (index, value) => {
-        setHiddenValues({ ...hiddenValues, [index]: value });
-        alertDeleted(songs[index]);
-    };
-    console.log('songs', songs);
+        setHiddenValues({ ...hiddenValues, [index]: value })
+        alertDeleted(songs[index], index)
+    }
+    console.log('songs', songs)
     return (
         <div className="">
             <div className={`container overflow-y-scroll ${style} mt-3`}>
@@ -27,7 +19,7 @@ const SaveSongPlaylist: FC<ISaveSongPlayList> = ({
                         <SongCard
                             key={index.toString()}
                             song={song}
-                            index={index}
+                            index={index.toString()}
                             onDelete={handleDelete}
                             isHidden={hiddenValues[index]}
                             isDeletable={true}
@@ -39,12 +31,16 @@ const SaveSongPlaylist: FC<ISaveSongPlayList> = ({
                             song={emptySong}
                             index={0}
                             isDeletable={false}
+                            onDelete={undefined}
+                            isHidden={undefined}
                         />
                     </div>
                 )}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default SaveSongPlaylist;
+SaveSongPlaylist.propTypes = {}
+
+export default SaveSongPlaylist

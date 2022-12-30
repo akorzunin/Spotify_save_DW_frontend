@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC } from "react"
 
 interface IBlob {
-    styles: string;
+  styles: string
 }
 
-export const Blob: FC<IBlob> = ({ styles }) => {
+export const Blob: FC<IBlob> = ({styles}) => {
     return (
         <svg
             width="494"
@@ -33,5 +33,5 @@ export const Blob: FC<IBlob> = ({ styles }) => {
                 </radialGradient>
             </defs>
         </svg>
-    );
-};
+    )
+}
