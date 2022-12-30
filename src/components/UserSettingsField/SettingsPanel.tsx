@@ -110,7 +110,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
     useEffect(() => {
         if (DwPlaylistId) {
             // @ts-ignore cause this form always exist
-            document.forms[0][3].value = DwPlaylistId;
+            // document.forms[0][3].value = DwPlaylistId;
         }
     }, [DwPlaylistId]);
 
@@ -145,7 +145,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                         <input
                             id="email-checkbox"
                             type="checkbox"
-                            value=""
+                            // value=""
                             className="check"
                             onChange={handleShowEmailField}
                         />
@@ -181,7 +181,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                         <input
                             id="dw-link"
                             type="text"
-                            defaultValue=""
+                            // defaultValue=""
                             placeholder="Discover Weekly playlist id"
                             className={`${TextFormStyle}`}
                         />
@@ -190,7 +190,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                         <input
                             id="autosave-checkbox"
                             type="checkbox"
-                            value=""
+                            // value=""
                             className="check"
                             onClick={() => {
                                 setAutosaveChecked(!autosaveChecked);
@@ -210,7 +210,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                                 <input
                                     id="filter-dislikes-checkbox"
                                     type="checkbox"
-                                    value=""
+                                    // value=""
                                     className="check"
                                     onClick={() => {
                                         setFilterDislikesChecked(!filterDislikesChecked);
@@ -230,7 +230,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                                         <input
                                             id="save-full-playlist-checkbox"
                                             type="checkbox"
-                                            value=""
+                                            // value=""
                                             className="check"
                                         />
                                         <label
