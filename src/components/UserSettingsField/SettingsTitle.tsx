@@ -1,7 +1,6 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, { FC } from 'react';
 
-const SettingsTitle = () => {
+const SettingsTitle: FC = () => {
     return (
         <div className="px-3 w-[100%]">
             <div
@@ -11,9 +10,7 @@ const SettingsTitle = () => {
                 Settings:
             </div>
         </div>
-    )
-}
+    );
+};
 
-SettingsTitle.propTypes = {}
-
-export default SettingsTitle
+export default SettingsTitle;
