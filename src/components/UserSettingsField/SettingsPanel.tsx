@@ -15,7 +15,8 @@ import Button from '../Buttons/BaseButton';
 
 export const TextFormStyle =
     'w-full mb-3 appearance-none block bg-gray-200 text-gray-700 border border-green-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white';
-export const CheckboxFormStyle = 'w-4 h-4 bg-gray-100 rounded border-transparent cursor-pointer';
+export const CheckboxFormStyle =
+    'w-4 h-4 bg-gray-100 rounded border-transparent cursor-pointer';
 export const HintFormStyle =
     'text-sm font-light text-white bg-gray-500 absolute max-w-[192px] rounded-md transition-all duration-600 ease-in-out text-shadow-md';
 
@@ -28,7 +29,12 @@ interface ISettingsPanel {
     DwPlaylistId: string;
 }
 
-const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
+const SettingsPanel: FC<ISettingsPanel> = ({
+    IsPremium,
+    userId,
+    cookie,
+    DwPlaylistId,
+}) => {
     const [AutosaveHint, setAutosaveHint] = useState(false);
     const [FilterDislikesHint, setFilterDislikesHint] = useState(false);
     const [SaveFullPlHint, setSaveFullPlHint] = useState(false);
@@ -77,7 +83,9 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
             }
             if (item.type === 'datetime-local') {
                 if (item.value) {
-                    return (formData[item.id] = parseFormOutputDate(item.value));
+                    return (formData[item.id] = parseFormOutputDate(
+                        item.value
+                    ));
                 }
             }
             if (item.value) {
@@ -160,14 +168,24 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                         </label>
                         {SendmailHint && (
                             <p className={`${HintFormStyle} right-[30px] p-3`}>
-                                Send email everery week at Sunday to not forget/inform about DW playlist save
+                                Send email everery week at Sunday to not
+                                forget/inform about DW playlist save
                             </p>
                         )}
                     </div>
                     {emailFormActive && (
                         <div>
-                            <input id="email-input" className={`${TextFormStyle}`} type="email" placeholder="Email" />
-                            <input className={`${TextFormStyle}`} id="email-date-input" type="datetime-local" />
+                            <input
+                                id="email-input"
+                                className={`${TextFormStyle}`}
+                                type="email"
+                                placeholder="Email"
+                            />
+                            <input
+                                className={`${TextFormStyle}`}
+                                id="email-date-input"
+                                type="datetime-local"
+                            />
                         </div>
                     )}
                     <div className="flex-none">
@@ -213,7 +231,9 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                                     // value=""
                                     className="check"
                                     onClick={() => {
-                                        setFilterDislikesChecked(!filterDislikesChecked);
+                                        setFilterDislikesChecked(
+                                            !filterDislikesChecked
+                                        );
                                     }}
                                 />
                                 <label
@@ -248,25 +268,46 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                         )}
                         {AutosaveHint && (
                             <p className={`${HintFormStyle} right-[100px] p-3`}>
-                                Save palylist automatically at choosen time UTC. Service need to play one of playlist
-                                songs to get playlist context
+                                Save palylist automatically at choosen time UTC.
+                                Service need to play one of playlist songs to
+                                get playlist context
                             </p>
                         )}
                         {FilterDislikesHint && (
-                            <div className={`${HintFormStyle} right-[-10px] p-3`}>
-                                <p>Checked: Play all songs from playlist to filter only playable ones</p>
-                                <p>Not checked: save DW playlist as is and don't use player</p>
+                            <div
+                                className={`${HintFormStyle} right-[-10px] p-3`}
+                            >
+                                <p>
+                                    Checked: Play all songs from playlist to
+                                    filter only playable ones
+                                </p>
+                                <p>
+                                    Not checked: save DW playlist as is and
+                                    don't use player
+                                </p>
                             </div>
                         )}
                         {SaveFullPlHint && (
-                            <div className={`${HintFormStyle} right-[200px] p-3`}>
-                                <p>Checked: Save playlist even none of 30 songs were disliked</p>
-                                <p>Not checked: Consider such playlist as not listened thus don't save it'</p>
+                            <div
+                                className={`${HintFormStyle} right-[200px] p-3`}
+                            >
+                                <p>
+                                    Checked: Save playlist even none of 30 songs
+                                    were disliked
+                                </p>
+                                <p>
+                                    Not checked: Consider such playlist as not
+                                    listened thus don't save it'
+                                </p>
                             </div>
                         )}
                     </div>
                     {autosaveChecked && (
-                        <input className={`${TextFormStyle}`} id="autosave-date-input" type="datetime-local" />
+                        <input
+                            className={`${TextFormStyle}`}
+                            id="autosave-date-input"
+                            type="datetime-local"
+                        />
                     )}
                     <div className="flex justify-between">
                         <div>{SubmitMessage}</div>
@@ -274,8 +315,18 @@ const SettingsPanel: FC<ISettingsPanel> = ({ IsPremium, userId, cookie, DwPlayli
                     </div>
                 </form>
                 <div className="flex flex-col gap-y-3">
-                    <Button style="" title="Collect current DW" link={undefined} color="bg-white text-black w-40" />
-                    <Button style="" title="Play DW playlist" link={undefined} color="bg-white text-black w-36" />
+                    <Button
+                        style=""
+                        title="Collect current DW"
+                        link={undefined}
+                        color="bg-white text-black w-40"
+                    />
+                    <Button
+                        style=""
+                        title="Play DW playlist"
+                        link={undefined}
+                        color="bg-white text-black w-36"
+                    />
                 </div>
             </div>
         </div>

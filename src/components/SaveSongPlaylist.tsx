@@ -8,7 +8,11 @@ interface ISaveSongPlayList {
     style: string;
 }
 
-const SaveSongPlaylist: FC<ISaveSongPlayList> = ({ songs, alertDeleted, style }) => {
+const SaveSongPlaylist: FC<ISaveSongPlayList> = ({
+    songs,
+    alertDeleted,
+    style,
+}) => {
     const [hiddenValues, setHiddenValues] = useState({});
     const handleDelete = (index, value) => {
         setHiddenValues({ ...hiddenValues, [index]: value });
@@ -31,7 +35,11 @@ const SaveSongPlaylist: FC<ISaveSongPlayList> = ({ songs, alertDeleted, style })
                     ))
                 ) : (
                     <div className="opacity-50">
-                        <SongCard song={emptySong} index={0} isDeletable={false} />
+                        <SongCard
+                            song={emptySong}
+                            index={0}
+                            isDeletable={false}
+                        />
                     </div>
                 )}
             </div>

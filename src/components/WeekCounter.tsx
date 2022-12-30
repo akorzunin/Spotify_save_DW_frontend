@@ -7,5 +7,9 @@ export const WeekCounter: FC = () => {
     useEffect(() => {
         setcurrentWeek(weekNumber);
     }, []);
-    return <div className="text-white text-sm xl:text-lg p-0.5 text-shadow-md">Current week: {currentWeek}</div>;
+    return (
+        <div className="text-white text-sm xl:text-lg p-0.5 text-shadow-md">
+            Current week: {currentWeek}
+        </div>
+    );
 };

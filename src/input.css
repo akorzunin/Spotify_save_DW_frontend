@@ -130,12 +130,12 @@
     opacity: 0;
 }
 
-.check+label {
+.check + label {
     display: inline-flex;
     align-items: center;
     user-select: none;
-  }
-  .check+label::before {
+}
+.check + label::before {
     content: '';
     display: inline-block;
     box-sizing: border-box;
@@ -149,19 +149,19 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
-    transition: border .1s linear;
-  }
+    transition: border 0.1s linear;
+}
 
-  .check:hover + label::before {
+.check:hover + label::before {
     border: 2px solid red;
-  }
+}
 
-  .check:checked + label::before {
+.check:checked + label::before {
     border: none;
-  }
+}
 
-  .check:checked+label::before {
-    border-color: rgb(28,100,242);
-    background-color: rgb(28,100,242);
+.check:checked + label::before {
+    border-color: rgb(28, 100, 242);
+    background-color: rgb(28, 100, 242);
     background-image: url("data:image/svg+xml,<svg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'><path d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/></svg>");
-  }
+}
