@@ -1,16 +1,8 @@
-import React, { FC } from 'react';
-import { WeekCounter } from './WeekCounter';
+import React from "react"
+import PropTypes from "prop-types"
+import { WeekCounter } from "./WeekCounter"
 
-interface IUserCard {
-    userName: string;
-    imgUrl: string;
-    followers: number;
-}
-
-export const DefaultUserImage =
-    'https://i.scdn.co/image/ab6775700000ee8549835514e2fac464191927c7';
-
-const UserCard: FC<IUserCard> = ({ userName, imgUrl, followers }) => {
+const UserCard = ({ userName, imgUrl, followers }) => {
     return (
         <div className="flex p-5">
             <div className="mr-9">
@@ -26,14 +18,28 @@ const UserCard: FC<IUserCard> = ({ userName, imgUrl, followers }) => {
                         {userName}
                     </div>
                     <div className="text-white text-base mt-[2px] leading-6 opacity-80 hidden xl:block text-shadow-md">
-                        {followers > 999 ? followers / 1000 + 'k' : followers}{' '}
+                        {followers > 999 ? followers / 1000 + "k" : followers}{" "}
                         followers
                     </div>
                 </div>
                 <WeekCounter />
             </div>
         </div>
-    );
-};
+    )
+}
+export const DefaultUserImage =
+    "https://i.scdn.co/image/ab6775700000ee8549835514e2fac464191927c7"
 
-export default UserCard;
+UserCard.defaultProps = {
+    userName: "DefaultUser",
+    imgUrl: DefaultUserImage,
+    followers: 999,
+}
+
+UserCard.propTypes = {
+    userName: PropTypes.string,
+    imgUrl: PropTypes.string,
+    followers: PropTypes.number,
+}
+
+export default UserCard

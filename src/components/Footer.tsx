@@ -1,14 +1,11 @@
 // @ts-nocheck
-import React, { FC } from 'react';
-import { get_text_emoji, updateTextEmoji } from '../utils/utils';
+import React from "react"
+import PropTypes from "prop-types"
+import { get_text_emoji, updateTextEmoji } from "../utils/utils"
 
-interface IFooter {
-    style: string;
-}
-
-const Footer: FC<IFooter> = ({ style }) => {
+const Footer = ({ style }) => {
     return (
-        <footer
+        <div
             className={` mb-0 ${style}  w-[100%] sm:w-[600px] md:w-[728px] lg:w-[974px] xl:w-[1220px] 2xl:w-[1456px]`}
         >
             <div className="border-t border-gray-200 ">
@@ -25,12 +22,12 @@ const Footer: FC<IFooter> = ({ style }) => {
                                 className="img-responsive object-cover w-6 h-6 "
                                 src={
                                     new URL(
-                                        './../../static/images/email-logo-48.png',
+                                        "./../../static/images/email-logo-48.png",
                                         import.meta.url
                                     )
                                 }
                                 alt="mail"
-                            />
+                            ></img>
                         </a>
                         <a
                             className="ml-3 text-gray-500"
@@ -40,12 +37,12 @@ const Footer: FC<IFooter> = ({ style }) => {
                                 className="img-responsive object-cover w-6 h-6 "
                                 src={
                                     new URL(
-                                        './../../static/images/telegram-logo-48.PNG',
+                                        "./../../static/images/telegram-logo-48.PNG",
                                         import.meta.url
                                     )
                                 }
                                 alt="telegram"
-                            />
+                            ></img>
                         </a>
                     </span>
                     <span className=" ml-2 inline-flex  lg:mt-0 w-full justify-center md:justify-start md:w-auto">
@@ -60,22 +57,22 @@ const Footer: FC<IFooter> = ({ style }) => {
                                 className="img-responsive object-cover w-6 h-6 "
                                 src={
                                     new URL(
-                                        './../../static/images/github-48.PNG',
+                                        "./../../static/images/github-48.PNG",
                                         import.meta.url
                                     )
                                 }
                                 alt="github"
-                            />
+                            ></img>
                         </a>
                     </span>
                 </div>
             </div>
 
-            <div className="text-gray-600 body-font w-[100%] bottom-0">
+            <footer className="text-gray-600 body-font w-[100%] bottom-0">
                 <div className="bg-gray-100">
                     <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
                         <p className="text-gray-500 text-sm text-center sm:text-left">
-                            {' '}
+                            {" "}
                             2022 Save Spotify Discover Weekly playlist —
                             <a
                                 href="https://github.com/akorzunin"
@@ -94,9 +91,16 @@ const Footer: FC<IFooter> = ({ style }) => {
                         </span>
                     </div>
                 </div>
-            </div>
-        </footer>
-    );
-};
+            </footer>
+        </div>
+    )
+}
+Footer.defaultProps = {
+    style: "",
+}
 
-export default Footer;
+Footer.propTypes = {
+    style: PropTypes.string,
+}
+
+export default Footer

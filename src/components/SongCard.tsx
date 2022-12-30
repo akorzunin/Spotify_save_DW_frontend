@@ -1,36 +1,21 @@
-import React, { FC } from 'react';
-import { Song } from '../interfaces/Song';
-
-interface ISongCard {
-    song: Song;
-    index: number;
-    isDeletable: boolean;
-    onDelete?: (index: number, value: boolean) => void;
-    isHidden?: boolean;
-}
-
-const SongCard: FC<ISongCard> = ({
-    song,
-    index,
-    isDeletable,
-    onDelete,
-    isHidden,
-}) => {
+import React from "react"
+import PropTypes from "prop-types"
+const SongCard = ({ song, index, isDeletable, onDelete, isHidden }) => {
     const handleChange = () => {
         if (isDeletable) {
-            console.log('Deletable');
-            if (onDelete) onDelete(index, true);
+            console.log("Deletable")
+            onDelete(index, true)
         }
-    };
+    }
     return (
         <div
             className={`flex border-solid border-2 m-3 rounded-md ${
-                isHidden && 'hidden'
+                isHidden && "hidden"
             }`}
         >
             <div
                 className={`text-black p-2 mb-auto mt-auto inline ${
-                    index < 10 && 'ml-2'
+                    index < 10 && "ml-2"
                 }`}
             >
                 {index}
@@ -51,8 +36,8 @@ const SongCard: FC<ISongCard> = ({
                     {song.artists}
                 </div>
             </div>
-            <button
-                className={`text-white mr-5 my-auto ${!isDeletable && 'hidden'}
+            <div
+                className={`text-white mr-5 my-auto ${!isDeletable && "hidden"}
             border-solid border-2 m-3 rounded-md px-5 
             hover:bg-red-400 hover:pointer hover:border-transparent cursor-pointer
             transition
@@ -60,9 +45,23 @@ const SongCard: FC<ISongCard> = ({
                 onClick={handleChange}
             >
                 X
-            </button>
+            </div>
         </div>
-    );
-};
+    )
+}
 
-export default SongCard;
+SongCard.defaultProps = {
+    onDelete: () => {},
+    isHidden: false,
+    isDeletable: false,
+}
+
+// SongCard.propTypes = {
+//     song: PropTypes.string,
+//     index: PropTypes.string,
+//     onDelete: PropTypes.func,
+//     isHidden: PropTypes.boolean,
+//     isDeletable: PropTypes.boolean,
+// }
+
+export default SongCard
