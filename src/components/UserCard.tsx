@@ -11,7 +11,11 @@ interface IUserCard {
 export const DefaultUserImage =
     'https://i.scdn.co/image/ab6775700000ee8549835514e2fac464191927c7';
 
-const UserCard: FC<IUserCard> = ({ userName, imgUrl, followers }) => {
+const UserCard: FC<IUserCard> = ({
+    userName = 'User Name',
+    imgUrl = DefaultUserImage,
+    followers = 0,
+}) => {
     const [modalActive, setModalActive] = useState(false);
 
     return (
@@ -37,7 +41,11 @@ const UserCard: FC<IUserCard> = ({ userName, imgUrl, followers }) => {
                 <WeekCounter />
             </div>
             {modalActive && (
-                <ModalAvatar img={imgUrl} isOpen={modalActive} handleCloseModal={setModalActive} />
+                <ModalAvatar
+                    img={imgUrl}
+                    isOpen={modalActive}
+                    handleCloseModal={setModalActive}
+                />
             )}
         </div>
     );

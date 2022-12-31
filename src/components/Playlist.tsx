@@ -11,7 +11,7 @@ interface IPlayList {
 
 const Playlist: FC<IPlayList> = ({ title, songs, isDW, style }) => {
     return (
-        <div className={'max-w-md mb-3 flex flex-col justify-center gap-y-12'}>
+        <div className={'max-w-md mb-3 flex flex-col gap-y-12'}>
             <PlaylistTitle title={'Playlist: ' + title} isDW={isDW} />
             <div
                 className={`firefox-scrollBar container overflow-y-scroll ${style} mt-3`}
