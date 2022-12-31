@@ -20,6 +20,7 @@ const Footer: FC<IFooter> = ({ style }) => {
                         <a
                             className="text-gray-500"
                             href="mailto:akorzunin123@gmail.com"
+                            target="_blank"
                         >
                             <img
                                 className="img-responsive object-cover w-6 h-6 "
@@ -35,6 +36,7 @@ const Footer: FC<IFooter> = ({ style }) => {
                         <a
                             className="ml-3 text-gray-500"
                             href="https://t.me/akorzunin"
+                            target="_blank"
                         >
                             <img
                                 className="img-responsive object-cover w-6 h-6 "
@@ -55,6 +57,7 @@ const Footer: FC<IFooter> = ({ style }) => {
                         <a
                             className="ml-3 text-gray-500"
                             href="https://github.com/akorzunin/Spotify_save_DW"
+                            target="_blank"
                         >
                             <img
                                 className="img-responsive object-cover w-6 h-6 "
