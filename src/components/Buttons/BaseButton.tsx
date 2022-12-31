@@ -9,6 +9,7 @@ interface IBaseButton {
     link?: string | undefined;
     color: string;
     style?: string;
+    onClick?: VoidFunction;
 }
 
 const BaseButton: FC<IBaseButton> = ({
@@ -16,12 +17,14 @@ const BaseButton: FC<IBaseButton> = ({
     link = '/',
     color = 'bg-blue-700',
     style = '',
+    onClick,
 }) => {
     return (
         <a
             tabIndex={0}
             href={link}
             className={`${BaseButtonClass} ${color} ${style} btn`}
+            onClick={onClick}
         >
             {title}
         </a>

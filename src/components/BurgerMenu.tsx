@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { FC, useEffect, useState } from 'react';
 import Button from './Buttons/BaseButton';
-import LogoutButton from './Buttons/LogoutButton';
 import { Link } from 'react-router-dom';
+import { deleteCookies } from '../utils/cookieHandle';
 
-const BurgerMenu = ({ burgerClass, ButtonStyle }) => {
+interface IBurgerMenu {
+    burgerClass: string;
+}
+
+const BurgerMenu: FC<IBurgerMenu> = ({ burgerClass }) => {
     const [burgerOpen, setburgerOpen] = useState('');
     useEffect(() => {
         setburgerOpen(burgerClass ? 'popup_open' : '');
@@ -24,12 +27,15 @@ const BurgerMenu = ({ burgerClass, ButtonStyle }) => {
                     />
                 </Link>
                 <Button style="" title="Home" link="/" color="text-black" />
-                <LogoutButton />
+                <Button
+                    title="Logout"
+                    link="/"
+                    color="bg-red-500"
+                    onClick={deleteCookies}
+                />
             </div>
         </div>
     );
 };
-
-BurgerMenu.propTypes = {};
 
 export default BurgerMenu;

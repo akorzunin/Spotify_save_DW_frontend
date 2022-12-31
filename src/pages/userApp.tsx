@@ -10,7 +10,6 @@ import BurgerMenu from '../components/BurgerMenu';
 import { Link, useParams } from 'react-router-dom';
 import SettingsPanel from '../components/UserSettingsField/SettingsPanel';
 import Button from '../components/Buttons/BaseButton';
-import LogoutButton from '../components/Buttons/LogoutButton';
 import { emptySong } from '../interfaces/Song';
 import UserCard from '../components/UserCard';
 import Playlist from '../components/Playlist';
@@ -159,9 +158,13 @@ export const UserApp = () => {
                                 color="bg-white text-black"
                             />
                         </Link>
-                        <div className="ml-12 ">
-                            <LogoutButton />
-                        </div>
+
+                        <Button
+                            title="Logout"
+                            link="/"
+                            color="bg-red-500 ml-12"
+                            onClick={cookieHandle.deleteCookies}
+                        />
                     </div>
                     <div className="block lg:hidden">
                         <Burger
