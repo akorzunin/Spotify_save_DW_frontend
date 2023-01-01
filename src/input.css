@@ -153,7 +153,7 @@
 }
 
 .check:hover + label::before {
-    border: 2px solid red;
+    border: 2px solid rgb(28, 100, 242);
 }
 
 .check:checked + label::before {
