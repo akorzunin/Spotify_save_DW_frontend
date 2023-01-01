@@ -11,22 +11,37 @@ import {
     parseFormOutputDate,
 } from '../../utils/dbManager';
 import { formDataMap } from '../../interfaces/FormDataMap';
-import { BaseButtonClass } from '../Buttons/BaseButton';
 import Button from '../Buttons/BaseButton';
 
 export const TextFormStyle =
     'w-full mb-3 appearance-none block bg-gray-200 text-gray-700 border border-green-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white';
 export const CheckboxFormStyle =
-    'w-4 h-4 bg-gray-100 rounded border-transparent focus:border-transparent focus:ring-0 cursor-pointer';
+    'w-4 h-4 bg-gray-100 rounded border-transparent cursor-pointer';
 export const HintFormStyle =
     'text-sm font-light text-white bg-gray-500 absolute max-w-[192px] rounded-md transition-all duration-600 ease-in-out text-shadow-md';
 
-const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
+interface ISettingsPanel {
+    IsPremium: boolean;
+    userId: string;
+    cookie: {
+        refresh_token: VoidFunction;
+    };
+    DwPlaylistId: string;
+}
+
+const SettingsPanel: FC<ISettingsPanel> = ({
+    IsPremium,
+    userId,
+    cookie,
+    DwPlaylistId,
+}) => {
     const [AutosaveHint, setAutosaveHint] = useState(false);
     const [FilterDislikesHint, setFilterDislikesHint] = useState(false);
     const [SaveFullPlHint, setSaveFullPlHint] = useState(false);
     const [SendmailHint, setSendmailHint] = useState(false);
     const [SubmitMessage, setSubmitMessage] = useState('');
+    const [autosaveChecked, setAutosaveChecked] = useState(false);
+    const [filterDislikesChecked, setFilterDislikesChecked] = useState(false);
     const showHint = (event) => {
         if (event) {
             if (event.target.id == 'autosave') {
@@ -84,8 +99,8 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
     };
 
     const setFormData = (data) => {
+        // restore form data from db
         Array.from(document.forms[0]).map((item: any) => {
-            // console.log(item.type)
             if (item.type === 'checkbox') {
                 return (item.checked = getDbData(item, data, formDataMap));
             }
@@ -101,8 +116,12 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
     // automatically pick up dw palylist id for user
     useEffect(() => {
         if (DwPlaylistId) {
-            // @ts-ignore cause this form always exist
-            document.forms[0][3].value = DwPlaylistId;
+            // @ts-ignore cant use `as HTMLInputElement` bc of webpack error
+            const DWLinkForm: HTMLInputElement =
+                document.querySelector('#dw-link');
+            if (DWLinkForm.value != DwPlaylistId) {
+                DWLinkForm.value = DwPlaylistId;
+            }
         }
     }, [DwPlaylistId]);
 
@@ -137,10 +156,9 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                         <input
                             id="email-checkbox"
                             type="checkbox"
-                            value=""
-                            className={`${CheckboxFormStyle}`}
+                            className="check"
                             onChange={handleShowEmailField}
-                        ></input>
+                        />
                         <label
                             id="email-checkbox-label"
                             htmlFor="email-checkbox"
@@ -183,57 +201,69 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                         <input
                             id="dw-link"
                             type="text"
-                            defaultValue=""
                             placeholder="Discover Weekly playlist id"
                             className={`${TextFormStyle}`}
-                        ></input>
+                        />
                     </div>
                     <div className="flex items-center relative mb-4">
                         <input
                             id="autosave-checkbox"
                             type="checkbox"
-                            value=""
-                            className={`${CheckboxFormStyle}`}
-                        ></input>
+                            className="check"
+                            onClick={() => {
+                                setAutosaveChecked(!autosaveChecked);
+                            }}
+                        />
                         <label
                             id="autosave"
                             htmlFor="autosave-checkbox"
-                            className="whitespace-nowrap mx-2 font-medium text-gray-900"
+                            className="whitespace-nowrap mx-2 font-medium text-gray-900 cursor-pointer"
                             onMouseEnter={showHint}
                             onMouseLeave={hideHint}
                         >
                             Autosave
                         </label>
-                        <input
-                            id="filter-dislikes-checkbox"
-                            type="checkbox"
-                            value=""
-                            className={`${CheckboxFormStyle}`}
-                        ></input>
-                        <label
-                            id="filter-dislikes"
-                            htmlFor="filter-dislikes-checkbox"
-                            className="whitespace-nowrap mx-2 font-medium text-gray-900"
-                            onMouseEnter={showHint}
-                            onMouseLeave={hideHint}
-                        >
-                            Filter dislikes
-                        </label>
-                        <input
-                            id="save-full-playlist-checkbox"
-                            type="checkbox"
-                            value=""
-                            className={`${CheckboxFormStyle}`}
-                        ></input>
-                        <label
-                            id="save-full-playlist"
-                            htmlFor="save-full-playlist-checkbox"
-                            className="whitespace-nowrap mx-2 font-medium text-gray-900"
-                            onMouseEnter={showHint}
-                            onMouseLeave={hideHint}
-                        >
-                            Save full playlist
-                        </label>
+                        {autosaveChecked && (
+                            <>
+                                <input
+                                    id="filter-dislikes-checkbox"
+                                    type="checkbox"
+                                    className="check"
+                                    onClick={() => {
+                                        setFilterDislikesChecked(
+                                            !filterDislikesChecked
+                                        );
+                                    }}
+                                />
+                                <label
+                                    id="filter-dislikes"
+                                    htmlFor="filter-dislikes-checkbox"
+                                    className="whitespace-nowrap mx-2 font-medium text-gray-900 cursor-pointer"
+                                    onMouseEnter={showHint}
+                                    onMouseLeave={hideHint}
+                                >
+                                    Filter dislikes
+                                </label>
+                                {filterDislikesChecked && (
+                                    <>
+                                        <input
+                                            id="save-full-playlist-checkbox"
+                                            type="checkbox"
+                                            className="check"
+                                        />
+                                        <label
+                                            id="save-full-playlist"
+                                            htmlFor="save-full-playlist-checkbox"
+                                            className="whitespace-nowrap mx-2 font-medium text-gray-900 cursor-pointer"
+                                            onMouseEnter={showHint}
+                                            onMouseLeave={hideHint}
+                                        >
+                                            Save full playlist
+                                        </label>
+                                    </>
+                                )}
+                            </>
+                        )}
                         {AutosaveHint && (
                             <p className={`${HintFormStyle} right-[100px] p-3`}>
                                 Save palylist automatically at choosen time UTC.
@@ -270,18 +300,16 @@ const SettingsPanel: FC = ({ IsPremium, userId, cookie, DwPlaylistId }) => {
                             </div>
                         )}
                     </div>
-                    <input
-                        className={`${TextFormStyle}`}
-                        id="autosave-date-input"
-                        type="datetime-local"
-                    ></input>
+                    {autosaveChecked && (
+                        <input
+                            className={`${TextFormStyle}`}
+                            id="autosave-date-input"
+                            type="datetime-local"
+                        />
+                    )}
                     <div className="flex justify-between">
                         <div>{SubmitMessage}</div>
-                        <input
-                            className={`${BaseButtonClass} bg-white h-10 focus:bg-blue-600`}
-                            type="submit"
-                            value="Submit"
-                        />
+                        <Button style="" title="Submit" color="bg-white h-10" />
                     </div>
                 </form>
                 <div className="flex flex-col gap-y-3">

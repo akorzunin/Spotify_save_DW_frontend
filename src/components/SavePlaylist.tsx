@@ -1,7 +1,5 @@
 // @ts-nocheck
-import React, { useEffect, useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, useEffect, useState } from 'react';
 import * as apiManager from '../utils/apiManager';
 import * as timeMangment from '../utils/timeMangment';
 import SaveSongPlaylist from './SaveSongPlaylist';
@@ -9,7 +7,13 @@ import PlaylistTitle from './PlaylistTitle';
 import ClickButton from './Buttons/ClickButton';
 import { Song } from '../interfaces/Song';
 
-const SavePlaylist = ({ playbackSong, fullPlaylist, isDW, cookie, style }) => {
+const SavePlaylist: FC = ({
+    playbackSong,
+    fullPlaylist,
+    isDW,
+    cookie,
+    style,
+}) => {
     // States
     const [IsSpinning, setIsSpinning] = useState(false);
     const [SavePlState, setSavePlState] = useState('Save');
@@ -19,8 +23,7 @@ const SavePlaylist = ({ playbackSong, fullPlaylist, isDW, cookie, style }) => {
     const [PingState, setPingState] = useState('hidden');
     const [isPlSaved, setIsPlSaved] = useState(false);
     // Functions
-    const handleDelete = (song: Song, index) => {
-        console.log('Del', song, index);
+    const handleDelete = (song: Song) => {
         const newSet = playedSongsSet;
         newSet.delete(hashSong(song));
         setPlayedSongsSet(newSet);
@@ -158,7 +161,5 @@ const SavePlaylist = ({ playbackSong, fullPlaylist, isDW, cookie, style }) => {
         </div>
     );
 };
-
-SavePlaylist.propTypes = {};
 
 export default SavePlaylist;
