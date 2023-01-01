@@ -99,12 +99,11 @@ const SettingsPanel: FC<ISettingsPanel> = ({
     };
 
     const setFormData = (data) => {
+        // restore form data from db
         Array.from(document.forms[0]).map((item: any) => {
-            // console.log(item.type)
-            // for what??
-            // if (item.type === 'checkbox') {
-            //     return (item.checked = getDbData(item, data, formDataMap));
-            // }
+            if (item.type === 'checkbox') {
+                return (item.checked = getDbData(item, data, formDataMap));
+            }
             if (item.type === 'datetime-local') {
                 return (item.value = parseDateFromDb(data, item, formDataMap));
             }
@@ -117,8 +116,12 @@ const SettingsPanel: FC<ISettingsPanel> = ({
     // automatically pick up dw palylist id for user
     useEffect(() => {
         if (DwPlaylistId) {
-            // @ts-ignore cause this form always exist
-            // document.forms[0][3].value = DwPlaylistId;
+            // @ts-ignore cant use `as HTMLInputElement` bc of webpack error
+            const DWLinkForm: HTMLInputElement =
+                document.querySelector('#dw-link');
+            if (DWLinkForm.value != DwPlaylistId) {
+                DWLinkForm.value = DwPlaylistId;
+            }
         }
     }, [DwPlaylistId]);
 
@@ -153,7 +156,6 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                         <input
                             id="email-checkbox"
                             type="checkbox"
-                            // value=""
                             className="check"
                             onChange={handleShowEmailField}
                         />
@@ -199,7 +201,6 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                         <input
                             id="dw-link"
                             type="text"
-                            // defaultValue=""
                             placeholder="Discover Weekly playlist id"
                             className={`${TextFormStyle}`}
                         />
@@ -208,7 +209,6 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                         <input
                             id="autosave-checkbox"
                             type="checkbox"
-                            // value=""
                             className="check"
                             onClick={() => {
                                 setAutosaveChecked(!autosaveChecked);
@@ -228,7 +228,6 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                                 <input
                                     id="filter-dislikes-checkbox"
                                     type="checkbox"
-                                    // value=""
                                     className="check"
                                     onClick={() => {
                                         setFilterDislikesChecked(
@@ -250,7 +249,6 @@ const SettingsPanel: FC<ISettingsPanel> = ({
                                         <input
                                             id="save-full-playlist-checkbox"
                                             type="checkbox"
-                                            // value=""
                                             className="check"
                                         />
                                         <label
