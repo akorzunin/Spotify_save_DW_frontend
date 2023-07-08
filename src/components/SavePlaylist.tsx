@@ -126,7 +126,7 @@ const SavePlaylist: FC = ({
                         <ClickButton
                             title={SavePlState}
                             onClick={saveUserPlaylist}
-                            color={'bg-green-500'}
+                            color={'bg-emerald-600'}
                         />
                         <span className={`flex rounded-full ${PingState}`}>
                             <span className="animate-ping absolute right-[-6px] top-[-6px] inline-flex h-3 w-3 rounded-full bg-purple-700 opacity-75"></span>
@@ -136,18 +136,18 @@ const SavePlaylist: FC = ({
                     <ClickButton
                         title="Refresh"
                         onClick={onRefresh}
-                        color={'bg-yellow-500'}
+                        color={'bg-yellow-600'}
                     />
                     <ClickButton
                         title="Spin"
                         onClick={onSpin}
-                        color="bg-green-500"
+                        color="bg-emerald-600"
                     />
                     <ClickButton
                         title="From playback"
                         onClick={() => setListenPlayback(!listenPlayback)}
                         color={
-                            listenPlayback ? 'bg-green-500' : 'bg-yellow-500'
+                            listenPlayback ? 'bg-emerald-600' : 'bg-yellow-600'
                         }
                     />
                 </div>

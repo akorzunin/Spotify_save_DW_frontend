@@ -14,7 +14,7 @@ export const AboutPage = () => {
                             style="mr-3 "
                             title="Layout Demo"
                             link="/user/demo_user"
-                            color="bg-yellow-100"
+                            color="bg-white"
                         />
                     </Link>
                     <Link to="/">

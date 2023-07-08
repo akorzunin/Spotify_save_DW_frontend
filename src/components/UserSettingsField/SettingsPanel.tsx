@@ -150,7 +150,7 @@ const SettingsPanel: FC<ISettingsPanel> = ({
         <div className="w-[448px] mb-3">
             <SettingsTitle />
             <AccountStatus IsPremium={IsPremium} />
-            <div className="mx-3 mt-3 bg-green-500 rounded-md p-3 bg-opacity-20">
+            <div className="mx-3 mt-3 bg-emerald-600 rounded-md p-3 bg-opacity-20">
                 <form onSubmit={handleSubmit} className="w-full max-w-lg">
                     <div className="flex items-center relative mb-4">
                         <input

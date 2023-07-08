@@ -1,17 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./templates/*.html",
-    "./static/scripts/bundle.js",
-    // "./src/**/*.{ts, }",
-    // "./src/**/*.{tsx, }",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [
-    require('flowbite/plugin'),
-    require('tailwindcss-textshadow'),
-    require('tailwind-scrollbar'),
-  ],
-}
+export default {
+    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
+};

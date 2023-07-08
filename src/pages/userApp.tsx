@@ -164,6 +164,7 @@ export const UserApp = () => {
                             link="/"
                             color="bg-red-500 ml-12"
                             onClick={cookieHandle.deleteCookies}
+                            style=" text-white"
                         />
                     </div>
                     <div className="block lg:hidden">

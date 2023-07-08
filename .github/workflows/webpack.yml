@@ -1,33 +1,33 @@
-name: NodeJS with Webpack
+# name: NodeJS with Webpack
 
-on:
-    push:
-        branches: ['main']
-    pull_request:
-        branches: ['main']
+# on:
+#     push:
+#         branches: ['main']
+#     pull_request:
+#         branches: ['main']
 
-jobs:
-    build:
-        runs-on: ubuntu-latest
+# jobs:
+#     build:
+#         runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [19.x]
+#         strategy:
+#             matrix:
+#                 node-version: [19.x]
 
-        steps:
-            - uses: actions/checkout@v3
+#         steps:
+#             - uses: actions/checkout@v3
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ matrix.node-version }}
-                  cache: 'npm'
+#             - name: Use Node.js ${{ matrix.node-version }}
+#               uses: actions/setup-node@v3
+#               with:
+#                   node-version: ${{ matrix.node-version }}
+#                   cache: 'npm'
 
-            - name: install dependencies
-              run: npm install -D
+#             - name: install dependencies
+#               run: npm install -D
 
-            - name: build webpack
-              run: npm run devb
+#             - name: build webpack
+#               run: npm run devb
 
-            - name: build tailwind
-              run: npm run twb
+#             - name: build tailwind
+#               run: npm run twb

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { FC } from 'react';
 import { get_text_emoji, updateTextEmoji } from '../utils/utils';
 
@@ -24,12 +23,7 @@ const Footer: FC<IFooter> = ({ style }) => {
                         >
                             <img
                                 className="img-responsive object-cover w-6 h-6 "
-                                src={
-                                    new URL(
-                                        './../../static/images/email-logo-48.png',
-                                        import.meta.url
-                                    )
-                                }
+                                src="src/assets/images/email-logo-48.png"
                                 alt="mail"
                             />
                         </a>
@@ -40,12 +34,7 @@ const Footer: FC<IFooter> = ({ style }) => {
                         >
                             <img
                                 className="img-responsive object-cover w-6 h-6 "
-                                src={
-                                    new URL(
-                                        './../../static/images/telegram-logo-48.PNG',
-                                        import.meta.url
-                                    )
-                                }
+                                src="src/assets/images/telegram-logo-48.PNG"
                                 alt="telegram"
                             />
                         </a>
@@ -61,12 +50,7 @@ const Footer: FC<IFooter> = ({ style }) => {
                         >
                             <img
                                 className="img-responsive object-cover w-6 h-6 "
-                                src={
-                                    new URL(
-                                        './../../static/images/github-48.PNG',
-                                        import.meta.url
-                                    )
-                                }
+                                src="src/assets/images/github-48.PNG"
                                 alt="github"
                             />
                         </a>

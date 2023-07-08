@@ -20,7 +20,7 @@ const BurgerMenu: FC<IBurgerMenu> = ({ burgerClass }) => {
             <div className="my-auto mr-7 ml-auto flex flex-col">
                 <Link to="/help">
                     <Button
-                        style=""
+                        style="text-white"
                         title="Help"
                         link="/help"
                         color="text-black"
