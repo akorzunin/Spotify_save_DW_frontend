@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Cookies from 'universal-cookie';
-import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Buttons/BaseButton';
 import BlobButton from '../components/Buttons/BlobButton';
 import * as cookieHandle from '../utils/cookieHandle';
-import BaseButton from '../components/Buttons/BaseButton';
 
 export const App = () => {
     // handle cookies
@@ -51,11 +49,7 @@ export const App = () => {
                                 color="bg-white"
                             />
                         </div>
-                        <BaseButton
-                            title="Login"
-                            link="/login"
-                            color="bg-white"
-                        />
+                        <Button title="Login" link="/login" color="bg-white" />
                     </div>
                 </header>
                 <main className="">
