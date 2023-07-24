@@ -8,6 +8,9 @@ import './index.css';
 
 // App
 const appDiv = document.getElementById('app');
+if (!appDiv) {
+    throw new Error('No app div found');
+}
 const root = ReactDOM.createRoot(appDiv);
 
 root.render(
