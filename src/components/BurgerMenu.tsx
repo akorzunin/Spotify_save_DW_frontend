@@ -18,14 +18,12 @@ const BurgerMenu: FC<IBurgerMenu> = ({ burgerClass }) => {
             className={`popup ${burgerOpen} [clip-path:circle(70%_at_100%_30%)]`}
         >
             <div className="my-auto mr-7 ml-auto flex flex-col">
-                <Link to="/help">
-                    <Button
-                        style="text-white"
-                        title="Help"
-                        link="/help"
-                        color="text-black"
-                    />
-                </Link>
+                <Button
+                    style="text-white"
+                    title="Help"
+                    link="/help"
+                    color="text-white"
+                />
                 <Button style="" title="Home" link="/" color="text-black" />
                 <Button
                     title="Logout"
